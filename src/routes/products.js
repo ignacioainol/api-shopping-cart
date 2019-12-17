@@ -1,4 +1,3 @@
-const express = require('express');
 const router = require('express').Router();
 
 const productsModel = require('../models/Products');
@@ -42,6 +41,8 @@ router.put('/:id', async (req,res) => {
             const { body: productData } = req;
             const productEdited = await productsModel.update(productId, productData);
             res.status(200).send(productEdited);
+        }else{
+            res.status(404).send("Product does not exist");
         }
 
     } catch (error) {
